@@ -1,0 +1,21 @@
+
+services:
+  backend:
+    build: ./docker
+    container_name: schemakage_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+  postgres:
+    image: postgres:15
+    container_name: schemakage_postgres
+    environment:
+      POSTGRES_USER: schemakage
+      POSTGRES_PASSWORD: schemakage
+      POSTGRES_DB: schemakage_db
+    ports:
+      - "5432:5432"
+
